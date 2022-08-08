@@ -5,7 +5,7 @@ import 'package:flutter/rendering.dart';
 
 void main() {
   ScrollController controller = ScrollController();
-  runApp( MaterialApp(
+  runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
     title: 'Flutter Demo',
     theme: ThemeData(
@@ -38,7 +38,8 @@ void main() {
 }
 
 class CustomFab extends StatefulWidget {
-  const CustomFab({Key? key, required this.customFabController}) : super(key: key);
+  const CustomFab({Key? key, required this.customFabController})
+      : super(key: key);
   final ScrollController customFabController;
 
   @override
@@ -50,24 +51,28 @@ class _CustomFabState extends State<CustomFab> {
   @override
   Widget build(BuildContext context) {
     return Visibility(
-      //visible: isVisibles,
+      visible: isVisibles,
       child: FloatingActionButton(
-        child:isVisibles ? const Icon(Icons.phone): const Icon(Icons.phone_android_sharp),
+        child: isVisibles
+            ? const Icon(Icons.phone)
+            : const Icon(Icons.phone_android_sharp),
         onPressed: () {},
       ),
     );
   }
+
   @override
   void initState() {
     widget.customFabController.addListener(() {
-      if(widget.customFabController.position.userScrollDirection == ScrollDirection.reverse){
-        if(isVisibles !=false){
+      if (widget.customFabController.position.userScrollDirection ==
+          ScrollDirection.reverse) {
+        if (isVisibles != false) {
           setState(() {
-            isVisibles =false;
+            isVisibles = false;
           });
         }
-      }else{
-        if(isVisibles != true){
+      } else {
+        if (isVisibles != true) {
           setState(() {
             isVisibles = true;
           });
